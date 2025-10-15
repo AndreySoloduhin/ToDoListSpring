@@ -8,7 +8,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ru.example.ToDoListSpring.dto.TaskRequest;
 import ru.example.ToDoListSpring.dto.TaskResponse;
-import ru.example.ToDoListSpring.dto.mapper.TaskMapper;
+import ru.example.ToDoListSpring.mapper.TaskMapper;
 import ru.example.ToDoListSpring.model.Task;
 import ru.example.ToDoListSpring.model.enums.Status;
 import ru.example.ToDoListSpring.repository.TaskRepository;

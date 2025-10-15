@@ -1,14 +1,13 @@
 package ru.example.ToDoListSpring.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import ru.example.ToDoListSpring.model.enums.Status;
 
 import java.time.LocalDate;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -29,6 +28,5 @@ public class Task {
 	private LocalDate date;
 
 	@Column(nullable = false)
-	@Enumerated(EnumType.STRING)
 	private Status status;
 }

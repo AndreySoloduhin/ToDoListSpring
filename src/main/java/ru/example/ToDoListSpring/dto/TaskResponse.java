@@ -1,6 +1,9 @@
 package ru.example.ToDoListSpring.dto;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import ru.example.ToDoListSpring.model.enums.Status;
 
 import java.time.LocalDate;
@@ -14,5 +17,5 @@ public class TaskResponse {
 	private String title;
 	private String content;
 	private LocalDate date;
-	private String status;
+	private Status status;
 }

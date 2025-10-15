@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.example.ToDoListSpring.dto.TaskRequest;
 import ru.example.ToDoListSpring.dto.TaskResponse;
-import ru.example.ToDoListSpring.dto.mapper.TaskMapper;
+import ru.example.ToDoListSpring.mapper.TaskMapper;
 import ru.example.ToDoListSpring.model.Task;
 import ru.example.ToDoListSpring.model.enums.Status;
 import ru.example.ToDoListSpring.repository.TaskRepository;
@@ -66,7 +66,7 @@ public class TaskServiceImpl implements TaskService {
 		if (request.getContent() != null) existing.setContent(request.getContent());
 		if (request.getDate() != null) existing.setDate(request.getDate());
 		if (request.getStatus() != null)
-			existing.setStatus(mapper.mapStatus(String.valueOf(request.getStatus())));
+			existing.setStatus(mapper.mapStatus(request.getStatus()));
 
 		Task updated = taskRepository.save(existing);
 		return mapper.toResponse(updated);

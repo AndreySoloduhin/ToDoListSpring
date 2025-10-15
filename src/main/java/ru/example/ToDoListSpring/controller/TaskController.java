@@ -1,11 +1,10 @@
 package ru.example.ToDoListSpring.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.example.ToDoListSpring.dto.TaskRequest;
 import ru.example.ToDoListSpring.dto.TaskResponse;
-import ru.example.ToDoListSpring.dto.mapper.TaskMapper;
-import ru.example.ToDoListSpring.model.Task;
 import ru.example.ToDoListSpring.model.enums.Status;
 import ru.example.ToDoListSpring.service.TaskService;
 
@@ -17,7 +16,6 @@ import java.util.List;
 public class TaskController {
 
 	private final TaskService taskRepository;
-	private final TaskMapper taskMapper;
 
 	@GetMapping
 	public List<TaskResponse> findAllTasks() {
@@ -30,8 +28,9 @@ public class TaskController {
 	}
 
 	@GetMapping("filter_by_status/{status}")
-	public List<TaskResponse> filterByStatus(@PathVariable Status status) {
-		return taskRepository.filterTasksByStatus(status);
+	public List<TaskResponse> filterByStatus(@PathVariable String status) {
+		Status enumStatus = Status.fromString(status);
+		return taskRepository.filterTasksByStatus(enumStatus);
 	}
 
 	@GetMapping("sort")
@@ -41,12 +40,12 @@ public class TaskController {
 	}
 
 	@PostMapping("create")
-	public TaskResponse createTask(@RequestBody TaskRequest request) {
+	public TaskResponse createTask(@Valid @RequestBody TaskRequest request) {
 		return taskRepository.saveTask(request);
 	}
 
 	@PutMapping("update")
-	public TaskResponse updateTask(@RequestBody TaskRequest request) {
+	public TaskResponse updateTask(@Valid @RequestBody TaskRequest request) {
 		return taskRepository.updateTask(request);
 	}
 
